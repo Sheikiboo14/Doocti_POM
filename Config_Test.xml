@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
+<suite name="Suite">
+  <test thread-count="5" name="Login">
+    <classes>
+      <class name="org.dooctiadmin.test.Config_Test">
+		  <methods>
+			  <include name="Queue_Creation"/>
+			  <include name="Dispo_Creation"/>
+			  <!-- <include name="SubDispo_Creation"/>--> 
+			  <include name="TicketStatus_Creation"/>
+			  <include name="Pausecode_Creation"/>
+			  <include name="ManualDid_Creation"/>
+			  <include name="Tag_Creation"/>
+			  <include name="Announcement_Creation"/>
+			  <include name="Script_Creation"/> 
+			  <include name="InboundRoute_Creation"/>
+			  <include name="Timezone_Creation"/>
+			  <include name="MeetingTitle_Creation"/>
+			  <include name="Queue_Delete"/>
+			  <include name="Dispo_Delete"/>
+			  <!-- <include name="SubDispo_Delete"/>-->
+			  <include name="TicketStatus_Delete"/>
+			  <include name="Pausecode_Delete"/>
+			  <include name="DIDNumber_Delete"/>
+			  <include name="Tag_Delete"/>
+			  <include name="Announcement_Delete"/>
+			  <include name="Script_Delete"/>
+			  <include name="Inbound_Delete"/>
+			  <include name="Timezone_Delete"/>
+			  <include name="MeetingTitle_Delete"/>
+			  
+			  
+		  </methods>
+	  </class>
+      
+    </classes>
+  </test> <!-- Login -->
+</suite> <!-- Suite -->
