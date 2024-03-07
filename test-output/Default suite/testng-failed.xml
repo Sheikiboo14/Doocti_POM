@@ -7,8 +7,9 @@
         <methods>
           <include name="setup"/>
           <include name="startApp"/>
-          <include name="UserGroup_Creation" invocation-numbers="0"/>
+          <include name="QuitBrouwser"/>
           <include name="browserQuit"/>
+          <include name="User_Update" invocation-numbers="0"/>
         </methods>
       </class> <!-- org.dooctiadmin.test.UsersGroups_Test -->
     </classes>

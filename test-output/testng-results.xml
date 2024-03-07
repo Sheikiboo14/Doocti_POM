@@ -1,80 +1,40 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testng-results ignored="0" total="5" passed="5" failed="0" skipped="0">
+<testng-results ignored="14" total="15" passed="1" failed="0" skipped="0">
   <reporter-output>
   </reporter-output>
-  <suite started-at="2024-03-06T10:13:47 IST" name="Suite" finished-at="2024-03-06T10:14:29 IST" duration-ms="42502">
+  <suite started-at="2024-03-07T12:27:35 IST" name="Default suite" finished-at="2024-03-07T12:27:57 IST" duration-ms="22218">
     <groups>
     </groups>
-    <test started-at="2024-03-06T10:13:47 IST" name="Users and Groups Testing" finished-at="2024-03-06T10:14:29 IST" duration-ms="42502">
+    <test started-at="2024-03-07T12:27:35 IST" name="Default test" finished-at="2024-03-07T12:27:57 IST" duration-ms="22218">
       <class name="org.dooctiadmin.test.UsersGroups_Test">
-        <test-method is-config="true" signature="startApp()[pri:0, instance:org.dooctiadmin.test.UsersGroups_Test@5e600dd5]" started-at="2024-03-06T10:13:47 IST" name="startApp" finished-at="2024-03-06T10:13:59 IST" duration-ms="12725" status="PASS">
+        <test-method is-config="true" signature="startApp()[pri:0, instance:org.dooctiadmin.test.UsersGroups_Test@4a883b15]" started-at="2024-03-07T12:27:35 IST" name="startApp" finished-at="2024-03-07T12:27:46 IST" duration-ms="10907" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- startApp -->
-        <test-method is-config="true" signature="setup()[pri:0, instance:org.dooctiadmin.test.UsersGroups_Test@5e600dd5]" started-at="2024-03-06T10:13:59 IST" name="setup" finished-at="2024-03-06T10:14:02 IST" depends-on-methods="org.dooctiadmin.seleniumbase.DooctiAdminBase.startApp" duration-ms="2354" status="PASS">
+        <test-method is-config="true" signature="setup()[pri:0, instance:org.dooctiadmin.test.UsersGroups_Test@4a883b15]" started-at="2024-03-07T12:27:46 IST" name="setup" finished-at="2024-03-07T12:27:48 IST" depends-on-methods="org.dooctiadmin.seleniumbase.DooctiAdminBase.startApp" duration-ms="2091" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- setup -->
-        <test-method signature="UserGroup_Creation([Ljava.lang.String;)[pri:0, instance:org.dooctiadmin.test.UsersGroups_Test@5e600dd5]" started-at="2024-03-06T10:14:02 IST" name="UserGroup_Creation" data-provider="UserGroupData" finished-at="2024-03-06T10:14:07 IST" duration-ms="4797" status="PASS">
+        <test-method signature="User_Update([Ljava.lang.String;)[pri:0, instance:org.dooctiadmin.test.UsersGroups_Test@4a883b15]" started-at="2024-03-07T12:27:48 IST" name="User_Update" data-provider="UserData" finished-at="2024-03-07T12:27:57 IST" duration-ms="8465" status="PASS">
           <params>
             <param index="0">
               <value>
-                <![CDATA[[Ljava.lang.String;@4c5228e7]]>
+                <![CDATA[[Ljava.lang.String;@43da41e]]>
               </value>
             </param>
           </params>
           <reporter-output>
           </reporter-output>
-        </test-method> <!-- UserGroup_Creation -->
-        <test-method signature="User_Creation([Ljava.lang.String;)[pri:0, instance:org.dooctiadmin.test.UsersGroups_Test@5e600dd5]" started-at="2024-03-06T10:14:07 IST" name="User_Creation" data-provider="UserData" finished-at="2024-03-06T10:14:18 IST" duration-ms="10842" status="PASS">
-          <params>
-            <param index="0">
-              <value>
-                <![CDATA[[Ljava.lang.String;@78b612c6]]>
-              </value>
-            </param>
-          </params>
+        </test-method> <!-- User_Update -->
+        <test-method is-config="true" signature="QuitBrouwser()[pri:0, instance:org.dooctiadmin.test.UsersGroups_Test@4a883b15]" started-at="2024-03-07T12:27:57 IST" name="QuitBrouwser" finished-at="2024-03-07T12:27:57 IST" duration-ms="649" status="PASS">
           <reporter-output>
           </reporter-output>
-        </test-method> <!-- User_Creation -->
-        <test-method signature="Channel_Creation([Ljava.lang.String;)[pri:0, instance:org.dooctiadmin.test.UsersGroups_Test@5e600dd5]" started-at="2024-03-06T10:14:18 IST" name="Channel_Creation" data-provider="ChannelData" finished-at="2024-03-06T10:14:20 IST" duration-ms="2702" status="PASS">
-          <params>
-            <param index="0">
-              <value>
-                <![CDATA[[Ljava.lang.String;@806996]]>
-              </value>
-            </param>
-          </params>
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- Channel_Creation -->
-        <test-method signature="Source_Creation([Ljava.lang.String;)[pri:0, instance:org.dooctiadmin.test.UsersGroups_Test@5e600dd5]" started-at="2024-03-06T10:14:20 IST" name="Source_Creation" data-provider="SourceData" finished-at="2024-03-06T10:14:22 IST" duration-ms="2171" status="PASS">
-          <params>
-            <param index="0">
-              <value>
-                <![CDATA[[Ljava.lang.String;@70211df5]]>
-              </value>
-            </param>
-          </params>
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- Source_Creation -->
-        <test-method signature="Team_Creation([Ljava.lang.String;)[pri:0, instance:org.dooctiadmin.test.UsersGroups_Test@5e600dd5]" started-at="2024-03-06T10:14:22 IST" name="Team_Creation" data-provider="TeamData" finished-at="2024-03-06T10:14:29 IST" duration-ms="6759" status="PASS">
-          <params>
-            <param index="0">
-              <value>
-                <![CDATA[[Ljava.lang.String;@38e7ed69]]>
-              </value>
-            </param>
-          </params>
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- Team_Creation -->
-        <test-method is-config="true" signature="browserQuit()[pri:0, instance:org.dooctiadmin.test.UsersGroups_Test@5e600dd5]" started-at="2024-03-06T10:14:29 IST" name="browserQuit" finished-at="2024-03-06T10:14:29 IST" duration-ms="1" status="PASS">
+        </test-method> <!-- QuitBrouwser -->
+        <test-method is-config="true" signature="browserQuit()[pri:0, instance:org.dooctiadmin.test.UsersGroups_Test@4a883b15]" started-at="2024-03-07T12:27:57 IST" name="browserQuit" finished-at="2024-03-07T12:27:57 IST" depends-on-methods="org.dooctiadmin.test.UsersGroups_Test.QuitBrouwser" duration-ms="1" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- browserQuit -->
       </class> <!-- org.dooctiadmin.test.UsersGroups_Test -->
-    </test> <!-- Users and Groups Testing -->
-  </suite> <!-- Suite -->
+    </test> <!-- Default test -->
+  </suite> <!-- Default suite -->
 </testng-results>

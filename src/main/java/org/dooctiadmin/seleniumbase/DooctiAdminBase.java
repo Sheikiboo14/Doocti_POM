@@ -308,7 +308,7 @@ public class DooctiAdminBase {
 	@DataProvider(name= "UserData")
 	public String[][] userData() {
 		
-		String[][] userdata = new String[1][8];
+		String[][] userdata = new String[1][13];
 		
 		userdata[0][0] = "developv2_agent10@doocti.com";
 		userdata[0][1] = "Testing Purpose";
@@ -317,7 +317,20 @@ public class DooctiAdminBase {
 		userdata[0][4] = "Doocti@123";
 		userdata[0][5] = "Agent";
 		userdata[0][6] = "Testing";
+		
+	//Create and Delete Assert & Edit and Delete	
+		
 		userdata[0][7] = "3";
+	
+	//Update date	
+	
+		userdata[0][8] = "Demo";
+		userdata[0][9] = "377";
+		userdata[0][10] = "Agent";
+		userdata[0][11] = "developv2_admin";
+		userdata[0][12] = "Inactive";
+
+
 
 		
 		
@@ -328,24 +341,52 @@ public class DooctiAdminBase {
 	@DataProvider(name = "ChannelData")
 	public String[][] channelData() {
 		
-		String [][] channeldata = new String[1][3];
+		String [][] channeldata = new String[1][6];
 		
 		channeldata[0][0] ="Test Channel";
 		channeldata[0][1] ="Channel Description";
-		channeldata[0][2] ="1";
-
 		
+		//Create and Delete Assert Data
+		
+		channeldata[0][2] ="1";
+		
+		// Edit Data
+
+		channeldata[0][3] ="3";
+		
+		// Update Data
+		
+		channeldata[0][4] ="Inactive";
+		
+		// Update Assert data
+		
+		channeldata[0][5] ="2";
+
+
+
 		return channeldata;
 	}
 	
 	@DataProvider(name = "SourceData")
 	public String[][] sourceData() {
 		
-		String [][] sourcedata = new String[1][3];
+		String [][] sourcedata = new String[1][6];
 		
 		sourcedata[0][0] ="Test Source";
 		sourcedata[0][1] ="Source Description";
+		
+		//Create and Delete Assert Data
+
 		sourcedata[0][2] ="1";
+		
+		// Update Data
+		
+		sourcedata[0][3] ="3";
+		sourcedata[0][4] ="Inactive";
+		
+		// Update Assert data
+		
+		sourcedata[0][5] ="2";
 		
 		return sourcedata;
 	}
@@ -353,19 +394,35 @@ public class DooctiAdminBase {
 	@DataProvider(name = "TeamData")
 	public String[][] teamData() {
 		
-		String [][] teamData = new String[1][8];
+		String [][] teamdata = new String[1][11];
 		
-		teamData[0][0] ="Test Team";
-		teamData[0][1] ="Team Description";
-		teamData[0][2] ="Lead Source";
-		teamData[0][3] ="Test Source";
-		teamData[0][4] ="Test Channel";
-		teamData[0][5] ="Preview Campaign";
-		teamData[0][6] ="developv2_agent02@doocti.com";
-		teamData[0][7] ="1";
+		//Create Data
+		
+		teamdata[0][0] ="Test Team";
+		teamdata[0][1] ="Team Description";
+		teamdata[0][2] ="Lead Source";
+		teamdata[0][3] ="Test Source";
+		teamdata[0][4] ="Test Channel";
+		teamdata[0][5] ="Preview Campaign";
+		teamdata[0][6] ="developv2_agent02@doocti.com";
+		
+		//Create and Delete Assertion Data
+		
+		teamdata[0][7] ="1";
+		
+		// Update Data
+		
+		teamdata[0][8] ="4";
+		teamdata[0][9]="Inactive";
+		
+		//Update Assertion Data
+		
+		teamdata[0][10]="3";
+		
+
 
 		
-		return teamData;
+		return teamdata;
 	}
 	
 	

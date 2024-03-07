@@ -5,11 +5,30 @@
     <classes>
       <class name="org.dooctiadmin.test.UsersGroups_Test">
 		  <methods>
+				<!-- Creation Flow-->
+				
 				<include name="UserGroup_Creation"/>
 				<include name="User_Creation"/>
 				<include name="Channel_Creation"/>
 				<include name="Source_Creation"/>
-				<include name="Team_Creation"/>			  
+				<include name="Team_Creation"/>	
+				
+					<!-- Updation Flow-->
+
+				<include name="UserGroup_Update"/>
+				<include name="User_Update"/>
+				<include name="Team_Update"/>
+				
+			<!--<include name="Channel_Update"/>
+				<include name="Source_Update"/>-->
+				
+				<!-- Deletion Flow-->
+				
+				<include name="UserGroup_Delete"/>
+				<include name="User_Delete"/>
+				<include name="Team_Delete"/>			  
+				<include name="Channel_Delete"/>
+				<include name="Source_Delete"/>
 		  </methods>
 	  </class>
       
