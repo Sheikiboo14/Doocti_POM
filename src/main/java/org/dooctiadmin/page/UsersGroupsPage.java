@@ -28,6 +28,11 @@ public class UsersGroupsPage extends DooctiAdminBase{
 
 		this.driver = driver;
 	}
+	
+/**
+ * 
+ * Side Bar Actions
+ */
 
 	public UsersGroupsPage clickUsersGroupsPage() {
 
@@ -72,15 +77,6 @@ public class UsersGroupsPage extends DooctiAdminBase{
 	}
 	
 	
-	
-	public UsersGroupsPage clickAdd() {
-
-		driver.findElement(By.xpath("(//button[contains(@class,'v-btn theme--light')])[2]")).click();
-
-		return this;
-	}
-
-
 
 	public UsersGroupsPage usergroupDetail(String ugname) {
 
@@ -128,7 +124,7 @@ public class UsersGroupsPage extends DooctiAdminBase{
 		
 
 
-		return this;
+		return this; 
 
 	}
 
@@ -483,17 +479,7 @@ public class UsersGroupsPage extends DooctiAdminBase{
 		return this;
 	}
 	
-	public UsersGroupsPage usersgroupsEdit(String editValue,String editCol) {
-		
-		wait = new WebDriverWait(driver,Duration.ofSeconds(30));
 
-		driver.findElement(By.xpath("//td[text()='"+editValue+"']//following-sibling::td["+editCol+"]//i[@class='v-icon mr-4 v-icon--link material-icons theme--light blue--text']")).click();
-		
-
-		
-		return this;
-		
-	}
 	
 	public UsersGroupsPage usergroupDelete(String ugname) {
 		
@@ -537,25 +523,8 @@ public class UsersGroupsPage extends DooctiAdminBase{
 		return this;
 	}
 
-	public UsersGroupsPage usersgroupsDelete(String deleteValue,String deleteCol) {
-		
-		wait = new WebDriverWait(driver,Duration.ofSeconds(30));
 
-		driver.findElement(By.xpath("//td[text()='"+deleteValue+"']//following-sibling::td["+deleteCol+"]//i[@class='v-icon mr-4 v-icon--link material-icons theme--light red--text']")).click();
-		
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("(//button[contains(@class,'v-btn theme--light')])[1]")));
-		
-		driver.findElement(By.xpath("(//button[contains(@class,'v-btn theme--light')])[1]")).click();
-		
-		return this;
-		
-	}
-	public UsersGroupsPage clickUpdate() {
-		
-		driver.findElement(By.xpath("//div[text()='Update']")).click();
-		
-		return this;
-	}
+
 	
 	
 	/**
@@ -586,10 +555,17 @@ public class UsersGroupsPage extends DooctiAdminBase{
 		return this;
 	}
 	
+	/**
+	 * This will perform Assertion for update flow
+	 * @param upvalue = This will get the Value need to be update
+	 * @param assertcol = This will get the column number were the actions icons present
+	 * @param expectedvalue = This will get the Expected Value
+	 * @return boolean value = This will return true or false value
+	 */
 	
-	public UsersGroupsPage updateAssertion(String updata , String assertcol,String expectedvalue ) {
+	public UsersGroupsPage updateAssertion(String upvalue , String assertcol,String expectedvalue ) {
 		
-		 List<WebElement> Alldatas = driver.findElements(By.xpath("//td[text()='"+updata+"']//following-sibling::td["+assertcol+"]"));
+		 List<WebElement> Alldatas = driver.findElements(By.xpath("//td[text()='"+upvalue+"']//following-sibling::td["+assertcol+"]"));
 	
 		boolean flag = false;
 		
@@ -641,17 +617,54 @@ public class UsersGroupsPage extends DooctiAdminBase{
 		return this;
 	}
 	
+
+
+
+	/**
+	 * 
+	 * Icons and Button Actions
+	 */
 	
+	public UsersGroupsPage clickAdd() {
 
+		driver.findElement(By.xpath("(//button[contains(@class,'v-btn theme--light')])[2]")).click();
 
+		return this;
+	}
 
+	
+	public UsersGroupsPage clickUpdate() {
+		
+		driver.findElement(By.xpath("//div[text()='Update']")).click();
+		
+		return this;
+	}
+	
+	public UsersGroupsPage usersgroupsEdit(String editValue,String editCol) {
+		
+		wait = new WebDriverWait(driver,Duration.ofSeconds(30));
 
+		driver.findElement(By.xpath("//td[text()='"+editValue+"']//following-sibling::td["+editCol+"]//i[@class='v-icon mr-4 v-icon--link material-icons theme--light blue--text']")).click();
+		
 
+		
+		return this;
+		
+	}
+	
+	public UsersGroupsPage usersgroupsDelete(String deleteValue,String deleteCol) {
+		
+		wait = new WebDriverWait(driver,Duration.ofSeconds(30));
 
-
-
-
-
+		driver.findElement(By.xpath("//td[text()='"+deleteValue+"']//following-sibling::td["+deleteCol+"]//i[@class='v-icon mr-4 v-icon--link material-icons theme--light red--text']")).click();
+		
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("(//button[contains(@class,'v-btn theme--light')])[1]")));
+		
+		driver.findElement(By.xpath("(//button[contains(@class,'v-btn theme--light')])[1]")).click();
+		
+		return this;
+		
+	}
 
 	/**
 	 * This function will refresh the page 

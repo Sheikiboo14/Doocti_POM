@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
+<suite name="Suite">
+  <test thread-count="5" name="Login">
+    <classes>
+      <class name="org.dooctiadmin.test.CRM_Test">
+		  <methods>
+			  <include name="PreviewCampaign_Create"/>
+			  <include name="PredictiveCampaign_Create"/>
+			  <include name="InboundCampaign_Create"/>
+			  <include name="PowerCampaign_Create"/>
+			  <include name="VoiceBlastCampaign_Create"/>
+			  <!-- 
+			  <include name="WhatsBlastCampaign_Create"/>
+			  <include name="List_Create"/>
+			  <include name="Lead_Create"/>
+			  <include name="Contact_Create"/>
+			  <include name="Ticket_Create"/>
+			  <include name="Meeting_Create"/>
+			  -->
+			  
+		  </methods>
+	  </class>
+      
+    </classes>
+  </test> <!-- Login -->
+</suite> <!-- Suite -->

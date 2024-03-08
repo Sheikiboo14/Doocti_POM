@@ -74,6 +74,11 @@ public class DooctiAdminBase {
 	}
 	 */
 
+	/**
+	 * Configuration Data's
+	 * 
+	 */
+
 	@DataProvider(name ="QueueData")
 	public String[][] queueData() {
 
@@ -99,7 +104,7 @@ public class DooctiAdminBase {
 		ddata[0][3] ="1";
 		ddata[0][4] ="Inactive";
 
-		
+
 
 		return ddata;
 
@@ -172,7 +177,7 @@ public class DooctiAdminBase {
 
 		blocklistdata[0][0]= "D:\\Testing File\\sample_blocklist.csv";
 		blocklistdata[0][1]= "1";
-		
+
 		return blocklistdata;
 
 	}
@@ -216,7 +221,7 @@ public class DooctiAdminBase {
 		announcementdata[0][2] ="Preview Campaign";
 		announcementdata[0][3] ="3";
 		announcementdata[0][4] ="1";
-		
+
 		return announcementdata;
 
 	}
@@ -233,7 +238,7 @@ public class DooctiAdminBase {
 		scriptdata[0][4] ="Text";
 		scriptdata[0][5] ="3";
 		scriptdata[0][6] ="1";
-		
+
 		return scriptdata;
 
 	}
@@ -287,29 +292,33 @@ public class DooctiAdminBase {
 		meetingtitledata[0][2] ="Testing Purpose";
 		meetingtitledata[0][3] ="4";
 		meetingtitledata[0][4] ="1";
-		
-		
+
+
 		return meetingtitledata;
 	}
-	
-	// Data's for Users and Groups
-	
+
+
+	/**
+	 * Users and Groups Data's
+	 * 
+	 */
+
 	@DataProvider(name= "UserGroupData")
 	public String[][] usergroupData() {
-		
+
 		String[][] usergroupdata = new String[1][1];
-		
+
 		usergroupdata[0][0] = "Testing";
-		
-		
+
+
 		return usergroupdata;
 	}
-	
+
 	@DataProvider(name= "UserData")
 	public String[][] userData() {
-		
+
 		String[][] userdata = new String[1][13];
-		
+
 		userdata[0][0] = "developv2_agent10@doocti.com";
 		userdata[0][1] = "Testing Purpose";
 		userdata[0][2] = "376";
@@ -317,13 +326,13 @@ public class DooctiAdminBase {
 		userdata[0][4] = "Doocti@123";
 		userdata[0][5] = "Agent";
 		userdata[0][6] = "Testing";
-		
-	//Create and Delete Assert & Edit and Delete	
-		
+
+		//Create and Delete Assert & Edit and Delete	
+
 		userdata[0][7] = "3";
-	
-	//Update date	
-	
+
+		//Update date	
+
 		userdata[0][8] = "Demo";
 		userdata[0][9] = "377";
 		userdata[0][10] = "Agent";
@@ -332,72 +341,72 @@ public class DooctiAdminBase {
 
 
 
-		
-		
-		
+
+
+
 		return userdata;
 	}
-	
+
 	@DataProvider(name = "ChannelData")
 	public String[][] channelData() {
-		
+
 		String [][] channeldata = new String[1][6];
-		
+
 		channeldata[0][0] ="Test Channel";
 		channeldata[0][1] ="Channel Description";
-		
+
 		//Create and Delete Assert Data
-		
+
 		channeldata[0][2] ="1";
-		
+
 		// Edit Data
 
 		channeldata[0][3] ="3";
-		
+
 		// Update Data
-		
+
 		channeldata[0][4] ="Inactive";
-		
+
 		// Update Assert data
-		
+
 		channeldata[0][5] ="2";
 
 
 
 		return channeldata;
 	}
-	
+
 	@DataProvider(name = "SourceData")
 	public String[][] sourceData() {
-		
+
 		String [][] sourcedata = new String[1][6];
-		
+
 		sourcedata[0][0] ="Test Source";
 		sourcedata[0][1] ="Source Description";
-		
+
 		//Create and Delete Assert Data
 
 		sourcedata[0][2] ="1";
-		
+
 		// Update Data
-		
+
 		sourcedata[0][3] ="3";
 		sourcedata[0][4] ="Inactive";
-		
+
 		// Update Assert data
-		
+
 		sourcedata[0][5] ="2";
-		
+
 		return sourcedata;
 	}
-	
+
 	@DataProvider(name = "TeamData")
 	public String[][] teamData() {
-		
+
 		String [][] teamdata = new String[1][11];
-		
+
 		//Create Data
-		
+
 		teamdata[0][0] ="Test Team";
 		teamdata[0][1] ="Team Description";
 		teamdata[0][2] ="Lead Source";
@@ -405,26 +414,75 @@ public class DooctiAdminBase {
 		teamdata[0][4] ="Test Channel";
 		teamdata[0][5] ="Preview Campaign";
 		teamdata[0][6] ="developv2_agent02@doocti.com";
-		
+
 		//Create and Delete Assertion Data
-		
+
 		teamdata[0][7] ="1";
-		
+
 		// Update Data
-		
+
 		teamdata[0][8] ="4";
 		teamdata[0][9]="Inactive";
-		
+
 		//Update Assertion Data
-		
+
 		teamdata[0][10]="3";
-		
 
 
-		
+
+
 		return teamdata;
 	}
+
+
+	/**
+	 * CRM Data's
+	 * @return 
+	 * 
+	 */
+
+
+	@DataProvider(name = "CampaignData")
+	public String[][] campaigndata() {
+
+		String [][]campaigndata = new String [1][23];
+
+		campaigndata[0][0] = "Test PREVIEW";
+		campaigndata[0][1] = "PREVIEW";
+		campaigndata[0][2] = "IT";
+		campaigndata[0][3] = "Testing";
+		campaigndata[0][4] = "developv2_8633537660";
+		campaigndata[0][5] = "500";
+		campaigndata[0][6] = "1.2";
+		campaigndata[0][7] = "10";
+		campaigndata[0][8] = "Testing";
+		campaigndata[0][9] = "5";
+		campaigndata[0][10] = "Text";	
+		campaigndata[0][11] = "Test Predictive";
+		campaigndata[0][12] = "PREDICTIVE";
+		campaigndata[0][13] = "Test Inbound";
+		campaigndata[0][14] = "INBOUND";
+		campaigndata[0][15] = "Test Power";
+		campaigndata[0][16] = "POWER";
+		campaigndata[0][17] = "Test VoiceBlast";
+		campaigndata[0][18] = "VOICE BLAST";
+		campaigndata[0][19] = "Test Whatsapp Blase";
+		campaigndata[0][20] = "WHATSAPP BLAST";
+		
+		// Delete Column
+		
+		campaigndata[0][21] = "8";
+		
+		// Edit Assert data
+		
+		campaigndata[0][22] = "No";
+
+		
+		
+		
+
+		return campaigndata;
+	}
 	
-	
-	
+
 }
