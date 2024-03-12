@@ -1,7 +1,7 @@
 package org.dooctiadmin.test;
 
+import org.doocti.seleniumbase.DooctiAdminBase;
 import org.dooctiadmin.page.ConfiguartionPage;
-import org.dooctiadmin.seleniumbase.DooctiAdminBase;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.testng.annotations.BeforeTest;

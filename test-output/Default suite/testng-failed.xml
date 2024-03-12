@@ -3,14 +3,14 @@
 <suite name="Failed suite [Default suite]" guice-stage="DEVELOPMENT">
   <test thread-count="5" name="Default test(failed)">
     <classes>
-      <class name="org.dooctiadmin.test.CRM_Test">
+      <class name="org.dooctiAgent.test.LoginTest">
         <methods>
-          <include name="Campaign_Update" invocation-numbers="0"/>
-          <include name="startApp"/>
           <include name="Setup"/>
-          <include name="browserQuit"/>
+          <include name="Quit"/>
+          <include name="login04Test" invocation-numbers="0"/>
+          <include name="login06Test" invocation-numbers="0"/>
         </methods>
-      </class> <!-- org.dooctiadmin.test.CRM_Test -->
+      </class> <!-- org.dooctiAgent.test.LoginTest -->
     </classes>
   </test> <!-- Default test(failed) -->
 </suite> <!-- Failed suite [Default suite] -->

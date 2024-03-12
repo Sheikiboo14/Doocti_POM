@@ -1,6 +1,6 @@
 package org.dooctiadmin.page;
 
-import org.dooctiadmin.seleniumbase.DooctiAdminBase;
+import org.doocti.seleniumbase.DooctiAdminBase;
 import org.openqa.selenium.By;
 import org.openqa.selenium.remote.RemoteWebDriver;
 import org.testng.Assert;

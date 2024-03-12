@@ -1,7 +1,7 @@
 package org.dooctiadmin.test;
 
+import org.doocti.seleniumbase.DooctiAdminBase;
 import org.dooctiadmin.page.LoginPage;
-import org.dooctiadmin.seleniumbase.DooctiAdminBase;
 import org.openqa.selenium.remote.RemoteWebDriver;
 import org.testng.Assert;
 import org.testng.annotations.Test;

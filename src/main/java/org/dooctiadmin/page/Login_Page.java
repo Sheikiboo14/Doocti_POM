@@ -1,6 +1,6 @@
 package org.dooctiadmin.page;
 
-import org.dooctiadmin.seleniumbase.Trail_Base;
+import org.doocti.seleniumbase.Trail_Base;
 import org.openqa.selenium.By;
 import org.openqa.selenium.remote.RemoteWebDriver;
 

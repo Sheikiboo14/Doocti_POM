@@ -4,7 +4,7 @@ import java.awt.Desktop.Action;
 import java.time.Duration;
 import java.util.List;
 
-import org.dooctiadmin.seleniumbase.DooctiAdminBase;
+import org.doocti.seleniumbase.DooctiAdminBase;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebElement;

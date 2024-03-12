@@ -1,4 +1,4 @@
-package org.dooctiadmin.seleniumbase;
+package org.doocti.seleniumbase;
 
 import java.util.concurrent.TimeUnit;
 
@@ -482,6 +482,97 @@ public class DooctiAdminBase {
 		
 
 		return campaigndata;
+	}
+	
+	@DataProvider(name = "MeetingData")
+	public String[][] meetingdata() {
+		
+		String[][]meetingdata = new String [1][8];
+		
+		meetingdata[0][0] ="Decision-making meeting";
+		meetingdata[0][1] ="Testing";
+		meetingdata[0][2] ="9514380497";
+		meetingdata[0][3] ="developv2_agent02@doocti.com";
+		meetingdata[0][4] ="11";
+		meetingdata[0][5] ="lead";
+		meetingdata[0][6] ="Testing";
+		meetingdata[0][7] ="Test Meeting";
+
+		
+		return meetingdata;
+		
+		
+	}
+	
+	@DataProvider(name = "ListData")
+	public String[][] listdata() {
+		
+		String[][]listdata = new String [1][5];
+		
+		listdata[0][0] ="2223";
+		listdata[0][1] ="Test List";
+		listdata[0][2] ="Testing";
+		listdata[0][3] ="Preview Campaign";
+		listdata[0][4] ="3";
+
+		
+		
+
+		
+		return listdata;
+		
+	}
+	
+	@DataProvider(name = "LeadData")
+	public String[][] leaddata() {
+		
+		String[][]leaddata = new String [1][5];
+		
+		leaddata[0][0] ="124";
+		leaddata[0][1] ="D:\\Testing File\\Dialer.csv";
+		leaddata[0][2] ="Test Lead";
+		leaddata[0][3] ="9999990000";
+		leaddata[0][4] ="Whatsapp";
+
+		
+
+		
+		return leaddata;
+		
+	}
+	
+	@DataProvider(name = "ContactData")
+	public String[][] contactdata() {
+		
+		String[][]contactdata = new String [1][3];
+		
+		contactdata[0][0] ="Test Contact";
+		contactdata[0][1] ="9898989898";
+		contactdata[0][2] ="C:\\Users\\User\\Desktop\\ContactList.csv";
+
+		
+		return contactdata;
+		
+	}
+	
+	@DataProvider(name = "TicketData")
+	public String[][] ticketdata() {
+		
+		String[][]ticketdata = new String [1][8];
+		
+		ticketdata[0][0] ="Open";
+		ticketdata[0][1] ="Testing Ticket";
+		ticketdata[0][2] ="Testing Subject";
+		ticketdata[0][3] ="Testing Description";
+		ticketdata[0][4] ="9514380497";
+		ticketdata[0][5] ="11";
+		ticketdata[0][6] ="Low";
+		ticketdata[0][7] ="Test Channel";
+
+		
+		return ticketdata;
+		
+		
 	}
 	
 

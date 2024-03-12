@@ -1,7 +1,7 @@
 package org.dooctiadmin.test;
 
+import org.doocti.seleniumbase.DooctiAdminBase;
 import org.dooctiadmin.page.UsersGroupsPage;
-import org.dooctiadmin.seleniumbase.DooctiAdminBase;
 import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;

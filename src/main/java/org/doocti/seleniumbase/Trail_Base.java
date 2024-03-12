@@ -1,4 +1,4 @@
-package org.dooctiadmin.seleniumbase;
+package org.doocti.seleniumbase;
 
 import java.util.concurrent.TimeUnit;
 
@@ -42,10 +42,7 @@ public class Trail_Base {
 		return data;
 	}
 	
-	@DataProvider(name = "Queue_Data")
-	public void queueData() {
-		
-	}
+
 
 
 }
