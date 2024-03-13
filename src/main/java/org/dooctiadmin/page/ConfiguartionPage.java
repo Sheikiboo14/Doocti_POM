@@ -963,4 +963,16 @@ public class ConfiguartionPage extends DooctiAdminBase {
 	}
 
 
+	public ConfiguartionPage consoleLog() throws AWTException {
+		
+		robot = new Robot();
+		
+		robot.keyPress(KeyEvent.VK_CONTROL);
+		robot.keyPress(KeyEvent.VK_SHIFT);
+		robot.keyPress(KeyEvent.VK_J);
+		
+		return this;
+		
+	}
+	
 }

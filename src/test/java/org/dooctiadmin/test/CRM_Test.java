@@ -176,10 +176,11 @@ public class CRM_Test extends DooctiAdminBase {
 	
 	
 	@Test(dataProvider="ContactData",dataProviderClass=DooctiAdminBase.class)
-	public void Contact_Creation(String contactdata[] ) {
+	public void Contact_Creation(String contactdata[] ) throws AWTException  {
 		
 		new CRMPage(driver)
 		.click_Contact()
+		.consoleLog()
 		.click_PlusIcon()
 		.contactData(contactdata[0],contactdata[1])
 		.click_SaveBtn()
@@ -199,10 +200,11 @@ public class CRM_Test extends DooctiAdminBase {
 	
 	}
 	@Test(dataProvider="TicketData",dataProviderClass=DooctiAdminBase.class)
-	public void Ticket_Creation(String ticketdata[] ) {
+	public void Ticket_Creation(String ticketdata[] ) throws AWTException {
 		
 		new CRMPage(driver)
 		.click_Ticket()
+		.consoleLog()
 		.click_PlusIcon()
 		.ticketData(ticketdata[0], ticketdata[1], ticketdata[2], ticketdata[3], ticketdata[4], ticketdata[5], ticketdata[6], ticketdata[7])
 		.click_SaveBtn();

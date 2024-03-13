@@ -1,6 +1,9 @@
 package org.dooctiadmin.page;
 
+import java.awt.AWTException;
+import java.awt.Robot;
 import java.awt.Desktop.Action;
+import java.awt.event.KeyEvent;
 import java.time.Duration;
 import java.util.List;
 
@@ -23,10 +26,25 @@ public class UsersGroupsPage extends DooctiAdminBase{
 	RemoteWebDriver driver = null;
 	
 	Actions action = null;
+	
+	Robot rb =null;
 
 	public UsersGroupsPage (RemoteWebDriver driver) {
 
 		this.driver = driver;
+	}
+	
+	
+	public UsersGroupsPage consoleLog() throws AWTException {
+		
+		rb = new Robot();
+		
+		rb.keyPress(KeyEvent.VK_CONTROL);
+		rb.keyPress(KeyEvent.VK_SHIFT);
+		rb.keyPress(KeyEvent.VK_J);
+		
+		return this;
+		
 	}
 	
 /**

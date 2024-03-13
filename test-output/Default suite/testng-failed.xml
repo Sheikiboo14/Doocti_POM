@@ -3,14 +3,13 @@
 <suite name="Failed suite [Default suite]" guice-stage="DEVELOPMENT">
   <test thread-count="5" name="Default test(failed)">
     <classes>
-      <class name="org.dooctiAgent.test.LoginTest">
+      <class name="org.dooctiAgent.test.Dashboard">
         <methods>
-          <include name="Setup"/>
           <include name="Quit"/>
-          <include name="login04Test" invocation-numbers="0"/>
-          <include name="login06Test" invocation-numbers="0"/>
+          <include name="meeting_Create" invocation-numbers="0"/>
+          <include name="Setup"/>
         </methods>
-      </class> <!-- org.dooctiAgent.test.LoginTest -->
+      </class> <!-- org.dooctiAgent.test.Dashboard -->
     </classes>
   </test> <!-- Default test(failed) -->
 </suite> <!-- Failed suite [Default suite] -->

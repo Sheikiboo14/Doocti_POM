@@ -36,6 +36,18 @@ public class CRMPage extends DooctiAdminBase{
 		this.driver = driver;
 	}
 
+	
+	public CRMPage consoleLog() throws AWTException {
+		
+		rb = new Robot();
+		
+		rb.keyPress(KeyEvent.VK_CONTROL);
+		rb.keyPress(KeyEvent.VK_SHIFT);
+		rb.keyPress(KeyEvent.VK_J);
+		
+		return this;
+		
+	}
 
 	/**
 	 * CRM Creation Flow
