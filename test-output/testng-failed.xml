@@ -6,7 +6,7 @@
       <class name="org.dooctiAgent.test.Dashboard">
         <methods>
           <include name="Quit"/>
-          <include name="meeting_Create" invocation-numbers="0"/>
+          <include name="contact_Create" invocation-numbers="0"/>
           <include name="Setup"/>
         </methods>
       </class> <!-- org.dooctiAgent.test.Dashboard -->

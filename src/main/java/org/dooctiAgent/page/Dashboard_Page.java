@@ -1,11 +1,16 @@
 package org.dooctiAgent.page;
 
+import java.awt.AWTException;
+import java.awt.Robot;
+import java.awt.event.KeyEvent;
 import java.time.Duration;
 import java.util.List;
 
 import org.doocti.seleniumbase.DooctiAgentBase;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.interactions.Actions;
+import org.openqa.selenium.interactions.WheelInput;
 import org.openqa.selenium.remote.RemoteWebDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
@@ -16,6 +21,8 @@ public class Dashboard_Page extends DooctiAgentBase{
 	RemoteWebDriver driver =null;
 
 	WebDriverWait wait = null;
+
+	Robot rb = null;
 
 	public Dashboard_Page(RemoteWebDriver driver) {
 
@@ -52,7 +59,42 @@ public class Dashboard_Page extends DooctiAgentBase{
 		return this;
 	}
 
+	public Dashboard_Page click_CallIcon(String calldata) {
+
+		driver.findElement(By.xpath("//p[text()='"+calldata+"']//following::span[text()='phone']")).click();
+
+		return this;
+	}
+
+	public Dashboard_Page click_DialPad() {
+
+		driver.findElement(By.xpath("//span[text()='Dial Pad']")).click();
+
+		return this;
+	}
+
+	public Dashboard_Page meeting_Filter(String meetingStatus) {
+
+		wait = new WebDriverWait(driver,Duration.ofSeconds(20));
+
+		driver.findElement(By.xpath("//span[text()='tune']")).click();
+
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("(//div[text()='Select...']/following-sibling::div)[2]")));
+
+		driver.findElement(By.xpath("(//div[text()='Select...']/following-sibling::div)[2]")).click();
+
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[text()='"+meetingStatus+"']")));
+
+		driver.findElement(By.xpath("//div[text()='"+meetingStatus+"']")).click();
+
+		driver.findElement(By.xpath("//button[text()='Apply Filter']")).click();
+
+		return this;
+
+	}
 	public Dashboard_Page click_Lead(boolean expectedValue) {
+
+		wait = new WebDriverWait(driver,Duration.ofSeconds(20));
 
 		driver.findElement(By.xpath("//div[text()='contact_page']")).click();
 
@@ -69,6 +111,8 @@ public class Dashboard_Page extends DooctiAgentBase{
 
 	public Dashboard_Page click_Contact(boolean expectedValue) {
 
+		wait = new WebDriverWait(driver,Duration.ofSeconds(20));
+
 		driver.findElement(By.xpath("//div[text()='contacts']")).click();
 
 		wait = new WebDriverWait(driver,Duration.ofSeconds(30));
@@ -82,6 +126,8 @@ public class Dashboard_Page extends DooctiAgentBase{
 	}
 
 	public Dashboard_Page click_Meeting(boolean expectedValue) {
+
+		wait = new WebDriverWait(driver,Duration.ofSeconds(20));
 
 		driver.findElement(By.xpath("//div[text()='group']")).click();
 
@@ -98,6 +144,8 @@ public class Dashboard_Page extends DooctiAgentBase{
 
 	public Dashboard_Page click_Ticket(boolean expectedValue) {
 
+		wait = new WebDriverWait(driver,Duration.ofSeconds(20));
+
 		driver.findElement(By.xpath("//div[text()='confirmation_number']")).click();
 
 		wait = new WebDriverWait(driver,Duration.ofSeconds(30));
@@ -112,6 +160,8 @@ public class Dashboard_Page extends DooctiAgentBase{
 	}
 
 	public Dashboard_Page click_Script(boolean expectedValue) {
+
+		wait = new WebDriverWait(driver,Duration.ofSeconds(20));
 
 		driver.findElement(By.xpath("//img[contains(@class,'navbar-logo-img navbar-menu-icon')]")).click();
 
@@ -128,6 +178,8 @@ public class Dashboard_Page extends DooctiAgentBase{
 
 	public Dashboard_Page click_Noti(boolean expectedValue) {
 
+		wait = new WebDriverWait(driver,Duration.ofSeconds(20));
+
 		driver.findElement(By.className("navbar-notification-icon")).click();
 
 		wait = new WebDriverWait(driver,Duration.ofSeconds(30));
@@ -143,6 +195,8 @@ public class Dashboard_Page extends DooctiAgentBase{
 
 	public Dashboard_Page click_Profile(boolean expectedValue) {
 
+		wait = new WebDriverWait(driver,Duration.ofSeconds(20));
+
 		driver.findElement(By.className("navbar-profile")).click();
 
 		wait = new WebDriverWait(driver,Duration.ofSeconds(30));
@@ -156,6 +210,250 @@ public class Dashboard_Page extends DooctiAgentBase{
 		return this;
 	}
 
+	public Dashboard_Page click_PauseBtn(boolean expectedValue, String pauseCode) {
+
+		wait = new WebDriverWait(driver,Duration.ofSeconds(20));
+
+		driver.findElement(By.xpath("//span[text()='pause']")).click();
+
+		wait = new WebDriverWait(driver,Duration.ofSeconds(30));
+
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[@class='dropdown-menu show']")));
+
+		boolean actualValue = driver.findElement(By.xpath("//div[@class='dropdown-menu show']")).isDisplayed();
+
+		Assert.assertEquals(actualValue, expectedValue,"Pause Code  is Not Displayed...!");
+
+		driver.findElement(By.xpath("//a[contains(text(),'"+pauseCode+"')]")).click();
+
+		String actualPauseCode= driver.findElement(By.tagName("p")).getText();
+
+		boolean flag = false;
+
+		if(actualPauseCode.equalsIgnoreCase(pauseCode)) {
+
+			flag = true;
+
+		}
+
+		Assert.assertTrue(flag,"Agent is not paused...!");
+
+		driver.findElement(By.xpath("(//button[@type='button']//span)[1]")).click();
+
+		actualPauseCode= driver.findElement(By.tagName("p")).getText();
+
+		System.out.println(actualPauseCode);
+
+		flag = false;
+
+		if(actualPauseCode.equalsIgnoreCase("Available")) {
+
+			flag = true;
+
+		}
+		Assert.assertTrue(flag,"Agent Not Resumed...!");
+
+
+		return this;
+	}
+
+
+	public Dashboard_Page click_Menu(boolean expectedValue) {
+
+		wait = new WebDriverWait(driver,Duration.ofSeconds(20));
+
+		driver.findElement(By.xpath("//button[contains(@class,'logout dropdown-toggle')]//div[1]")).click();
+
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.className("navbar-menu-container")));
+
+		boolean actualValue = driver.findElement(By.className("navbar-menu-container")).isDisplayed();
+
+		Assert.assertEquals(actualValue, expectedValue);
+
+		driver.findElement(By.xpath("//button[contains(@class,'logout dropdown-toggle')]//div[1]")).click();
+
+
+		return this;      
+
+
+	}
+
+	public Dashboard_Page click_MenuLead(boolean expectedValue) {
+
+		wait = new WebDriverWait(driver,Duration.ofSeconds(20));
+
+		driver.findElement(By.xpath("//button[contains(@class,'logout dropdown-toggle')]//div[1]")).click();
+
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("(//div[@class='dropdown-menu show'])[1]")));
+
+		WebElement menuList = driver.findElement(By.xpath("(//div[@class='dropdown-menu show'])[1]"));
+
+		menuList.findElement(By.xpath("(//div[text()='contact_page'])[2]")).click();
+
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[text()=' Leads']")));
+
+		boolean actualValue = driver.findElement(By.xpath("//div[text()=' Leads']")).isDisplayed();
+
+		Assert.assertEquals(actualValue, expectedValue);
+
+		driver.findElement(By.xpath("//button[contains(@class,'logout dropdown-toggle')]//div[1]")).click();
+
+
+		return this;      
+
+
+	}
+
+	public Dashboard_Page click_MenuMeeting(boolean expectedValue) {
+
+		wait = new WebDriverWait(driver,Duration.ofSeconds(20));
+
+		driver.findElement(By.xpath("//button[contains(@class,'logout dropdown-toggle')]//div[1]")).click();
+
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("(//div[@class='dropdown-menu show'])[1]")));
+
+		WebElement menuList = driver.findElement(By.xpath("(//div[@class='dropdown-menu show'])[1]"));
+
+		menuList.findElement(By.xpath("(//div[text()='group'])[2]")).click();
+
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[text()=' Meetings']")));
+
+		boolean actualValue = driver.findElement(By.xpath("//div[text()=' Meetings']")).isDisplayed();
+
+		Assert.assertEquals(actualValue, expectedValue);
+
+		driver.findElement(By.xpath("//button[contains(@class,'logout dropdown-toggle')]//div[1]")).click();
+
+		return this;      
+
+
+	}
+
+	public Dashboard_Page click_MenuTicket(boolean expectedValue) {
+
+		wait = new WebDriverWait(driver,Duration.ofSeconds(20));
+
+		driver.findElement(By.xpath("//button[contains(@class,'logout dropdown-toggle')]//div[1]")).click();
+
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("(//div[@class='dropdown-menu show'])[1]")));
+
+		WebElement menuList = driver.findElement(By.xpath("(//div[@class='dropdown-menu show'])[1]"));
+
+		menuList.findElement(By.xpath("(//div[text()='confirmation_number'])[2]")).click();
+
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[text()=' Tickets']")));
+
+		boolean actualValue = driver.findElement(By.xpath("//div[text()=' Tickets']")).isDisplayed();
+
+		Assert.assertEquals(actualValue, expectedValue);
+
+		driver.findElement(By.xpath("//button[contains(@class,'logout dropdown-toggle')]//div[1]")).click();
+
+		return this;      
+
+
+	}
+
+	public Dashboard_Page click_MenuContact(boolean expectedValue) {
+
+		wait = new WebDriverWait(driver,Duration.ofSeconds(20));
+
+		driver.findElement(By.xpath("//button[contains(@class,'logout dropdown-toggle')]//div[1]")).click();
+
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("(//div[@class='dropdown-menu show'])[1]")));
+
+		WebElement menuList = driver.findElement(By.xpath("(//div[@class='dropdown-menu show'])[1]"));
+
+		menuList.findElement(By.xpath("(//div[text()='contacts'])[2]")).click();
+
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[text()=' Contacts']")));
+
+		boolean actualValue = driver.findElement(By.xpath("//div[text()=' Contacts']")).isDisplayed();
+
+		Assert.assertEquals(actualValue, expectedValue);
+
+		driver.findElement(By.xpath("//button[contains(@class,'logout dropdown-toggle')]//div[1]")).click();
+
+		return this;      
+
+
+	}
+
+	public Dashboard_Page click_MenuVoicemail(boolean expectedValue) {
+
+		wait = new WebDriverWait(driver,Duration.ofSeconds(20));
+
+		driver.findElement(By.xpath("//button[contains(@class,'logout dropdown-toggle')]//div[1]")).click();
+
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("(//div[@class='dropdown-menu show'])[1]")));
+
+		WebElement menuList = driver.findElement(By.xpath("(//div[@class='dropdown-menu show'])[1]"));
+
+		menuList.findElement(By.xpath("(//div[text()='voicemail'])[1]")).click();
+
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[text()=' Voicemail']")));
+
+		boolean actualValue = driver.findElement(By.xpath("//div[text()=' Voicemail']")).isDisplayed();
+
+		Assert.assertEquals(actualValue, expectedValue);
+
+		driver.findElement(By.xpath("//button[contains(@class,'logout dropdown-toggle')]//div[1]")).click();
+
+		return this;      
+
+
+	}
+
+	public Dashboard_Page click_MenuScript(boolean expectedValue) {
+
+		wait = new WebDriverWait(driver,Duration.ofSeconds(20));
+
+		driver.findElement(By.xpath("//button[contains(@class,'logout dropdown-toggle')]//div[1]")).click();
+
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("(//div[@class='dropdown-menu show'])[1]")));
+
+		WebElement menuList = driver.findElement(By.xpath("(//div[@class='dropdown-menu show'])[1]"));
+
+		menuList.findElement(By.xpath("(//img[contains(@class,'navbar-logo-img navbar-menu-icon')])[2]")).click();
+
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("(//div[text()='Script'])[2]")));
+
+		boolean actualValue = driver.findElement(By.xpath("(//div[text()='Script'])[2]")).isDisplayed();
+
+		Assert.assertEquals(actualValue, expectedValue);
+
+		driver.findElement(By.xpath("//button[contains(@class,'logout dropdown-toggle')]//div[1]")).click();
+
+		return this;      
+
+
+	}
+
+	public Dashboard_Page click_MenuDashboard(boolean expectedValue) {
+
+		wait = new WebDriverWait(driver,Duration.ofSeconds(20));
+
+		driver.findElement(By.xpath("//button[contains(@class,'logout dropdown-toggle')]//div[1]")).click();
+
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("(//div[@class='dropdown-menu show'])[1]")));
+
+		WebElement menuList = driver.findElement(By.xpath("(//div[@class='dropdown-menu show'])[1]"));
+
+		menuList.findElement(By.xpath("(//div[text()='dashboard'])[2]")).click();
+
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[text()=' Dashboard']")));
+
+		boolean actualValue = driver.findElement(By.xpath("//div[text()=' Dashboard']")).isDisplayed();
+
+		Assert.assertEquals(actualValue, expectedValue);
+
+		driver.findElement(By.xpath("//button[contains(@class,'logout dropdown-toggle')]//div[1]")).click();
+
+		return this;      
+
+
+	}
+
 	public Dashboard_Page click_Close() {
 
 		driver.findElement(By.xpath("//span[text()='close']")).click();
@@ -164,6 +462,8 @@ public class Dashboard_Page extends DooctiAgentBase{
 	}
 
 	public Dashboard_Page click_Logout(boolean expectedValue) {
+
+		wait = new WebDriverWait(driver,Duration.ofSeconds(20));
 
 		driver.findElement(By.xpath("//div[text()='Log Out']")).click();
 
@@ -179,6 +479,139 @@ public class Dashboard_Page extends DooctiAgentBase{
 		return this;
 	}
 
+	public Dashboard_Page dialCall(String dialNumber) {
+
+		wait = new WebDriverWait(driver,Duration.ofSeconds(20));
+
+		boolean callBtn = driver.findElement(By.xpath("//button[contains(@class,'callnow ')]")).isEnabled();
+
+		Assert.assertFalse(callBtn);
+
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("(//span[text()='Dial Pad']/following::input)[1]")));
+
+		driver.findElement(By.xpath("(//span[text()='Dial Pad']/following::input)[1]")).sendKeys(dialNumber);
+
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//button[contains(@class,'callnow ')]")));
+
+		driver.findElement(By.xpath("//button[contains(@class,'callnow ')]")).click();	
+
+
+
+
+		return this;
+	}
+
+	public Dashboard_Page callDisconnect() {
+
+		wait = new WebDriverWait(driver,Duration.ofSeconds(20));
+
+		try {
+			Thread.sleep(15000);
+		}
+		catch(Exception e) {
+			System.err.println(e.getMessage());
+		}
+
+		if(driver.findElement(By.xpath("//a[contains(text(),'mic_off')]")).isDisplayed()==false) {
+
+			driver.findElement(By.xpath("//span[text()='call_end']")).click();
+
+
+		}
+
+		else {
+
+			wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//a[contains(text(),'mic_off')]")));
+
+			try {
+				Thread.sleep(5000);
+			}
+			catch(Exception e) {
+
+				System.err.println(e.getMessage());
+			}
+
+			driver.findElement(By.xpath("//span[text()='call_end']")).click();
+
+		}
+
+		return this;
+	}
+	public Dashboard_Page callDispo(String pageName,String dispo ,String sourceName) {
+
+		wait = new WebDriverWait(driver,Duration.ofSeconds(20));
+
+		switch (pageName) {
+
+		case "Leads":
+
+			String sourceData = driver.findElement(By.xpath("//div[text()='source']")).getText();
+
+			boolean isEmpty = sourceData.isEmpty();
+
+			if(isEmpty==true) {
+
+
+				wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[text()='source']/following-sibling::div")));
+
+				driver.findElement(By.xpath("//div[text()='source']/following-sibling::div")).click();
+
+				wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[text()='"+sourceName+"']")));
+
+				driver.findElement(By.xpath("//div[text()='"+sourceName+"']")).click();
+
+				driver.findElement(By.xpath("//div[text()='save']")).click();
+			}
+
+			wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[text()='"+dispo+"']//following-sibling::div[text()='check']")));
+
+			driver.findElement(By.xpath("//div[text()='"+dispo+"']//following-sibling::div[text()='check']")).click();
+
+			break;
+
+		case "Contacts":
+
+			wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[text()='"+dispo+"']//following-sibling::div[text()='check']")));
+
+			driver.findElement(By.xpath("//div[text()='"+dispo+"']//following-sibling::div[text()='check']")).click();
+			
+			wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//button[text()='Ok!']")));
+
+			driver.findElement(By.xpath("//button[text()='Ok!']")).click();
+
+			break;
+
+		case "Meetings":
+
+			wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[text()='"+dispo+"']//following-sibling::div[text()='check']")));
+
+			driver.findElement(By.xpath("//div[text()='"+dispo+"']//following-sibling::div[text()='check']")).click();
+
+			break;
+
+		case "Tickets":
+
+			wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[text()='"+dispo+"']//following-sibling::div[text()='check']")));
+
+			driver.findElement(By.xpath("//div[text()='"+dispo+"']//following-sibling::div[text()='check']")).click();
+
+			wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//button[text()='Ok!']")));
+
+			driver.findElement(By.xpath("//button[text()='Ok!']")).click();
+
+			break;
+
+		default :
+
+			System.err.println("Wronge Page Name");
+
+			break;
+
+		}
+
+
+		return this;
+	}
 	public Dashboard_Page click_PlusIcon() {
 
 		driver.findElement(By.xpath("//div[text()='add_circle']")).click();
@@ -199,7 +632,7 @@ public class Dashboard_Page extends DooctiAgentBase{
 
 		return this;
 	}
-	
+
 	public Dashboard_Page click_Createbtn() {
 
 		driver.findElement(By.xpath("//button[text()='Create']")).click();
@@ -215,9 +648,18 @@ public class Dashboard_Page extends DooctiAgentBase{
 		return this;
 	}
 
+	public Dashboard_Page click_FilterIcon() {
+
+		driver.findElement(By.xpath("//span[text()='tune']")).click();
+
+		return this;
+	}
+
 
 
 	public Dashboard_Page leadDetails(String first_Name ,String last_Name,String phone_Number,String email ,String address,String list_Id ,String tag_Name,String alt_Number,String lead_Status,String source_Name) {
+
+		wait = new WebDriverWait(driver,Duration.ofSeconds(20));
 
 		// First Name
 
@@ -376,6 +818,10 @@ public class Dashboard_Page extends DooctiAgentBase{
 
 	public Dashboard_Page meetingDetails(String meeting_Title,String meeting_Number,String meeting_Module,String meeting_Hours,String meeting_Min,String meeting_des,String meeting_Date) {
 
+		List<WebElement> Alldatas = driver.findElements(By.xpath("//table[contains(@class,'lead table')]//tr"));
+
+		int ini_Count = Alldatas.size();
+
 		//Meeting Title
 
 		wait.until(ExpectedConditions.elementToBeClickable(By.xpath("(//*[name()='svg'][@class='css-8mmkcg'])[1]")));
@@ -417,9 +863,114 @@ public class Dashboard_Page extends DooctiAgentBase{
 
 		driver.findElement(By.xpath("//button[text()='Create']")).click();
 
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[text()='refresh']")));
+
+		driver.findElement(By.xpath("//div[text()='refresh']")).click();
+
+		try {
+
+			Thread.sleep(1000);
+		}
+
+		catch(Exception e) {
+
+			System.err.println(e.getMessage());
+		}
+		// Verifiction
+
+		Alldatas = driver.findElements(By.xpath("//table[contains(@class,'lead table')]//tr"));
+
+		int count = Alldatas.size();
+
+		System.out.println("Actual Count = "+count);
+
+		boolean flag = false;
+
+		if(ini_Count<count) {
+
+			flag = true;
+		}
+
+		Assert.assertTrue(flag,"Meeting is not Created...!");
+
+
+
+		return this;
+
+	}
+
+	public Dashboard_Page ticketDetails(String status ,String account_Name,String subject_Name,String description ,String phone_Number,String ticket_Priority ,String ticket_Channel,String ticket_Date) {
+
+		wait = new WebDriverWait(driver,Duration.ofSeconds(20));
+
+		// Status
+
+		wait.until(ExpectedConditions.elementToBeClickable(By.xpath("(//*[name()='svg'][@class='css-8mmkcg'])[1]")));
+
+
+		driver.findElement(By.xpath("(//*[name()='svg'][@class='css-8mmkcg'])[1]")).click();
+
+		driver.findElement(By.xpath("//div[text()='"+status+"']")).click();
+
+		// Account Name
+
+		driver.findElement(By.xpath("(//input[@placeholder='Account_name'])[1]")).sendKeys(account_Name);
+
+		// Subject
+
+		driver.findElement(By.xpath("(//input[@placeholder='Subject'])[1]")).sendKeys(subject_Name);
+
+		// Description
+
+		driver.findElement(By.xpath("(//textarea[@placeholder='Description'])[1]")).sendKeys(description);
+
+		// Phone Number
+
+		driver.findElement(By.xpath("(//input[@placeholder='PhoneNumber'])[1]")).sendKeys(phone_Number);
+
+		// Due Date
+
+		driver.findElement(By.xpath("(//input[@placeholder='DueDate'])[1]")).click();
+
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("(//div[@class='react-datepicker'])[1]")));
+
+		driver.findElement(By.xpath("//div[text()='"+ticket_Date+"']")).click();
+
+		//Priority
+
+		driver.findElement(By.xpath("(//div[@class=' css-1xc3v61-indicatorContainer'])[3]")).click();
+
+		driver.findElement(By.xpath("//div[text()='"+ticket_Priority+"']")).click();
+
+		WebElement ticket_Form = driver.findElement(By.xpath("//div[@class='Customform-catagory']/following-sibling::div[1]"));
+
+		WheelInput.ScrollOrigin scrollOrigin = WheelInput.ScrollOrigin.fromElement(ticket_Form);
+
+		new Actions(driver)
+		.scrollFromOrigin(scrollOrigin, 0, 200)
+		.perform();
+
+		// Channel
+
+		driver.findElement(By.xpath("//div[text()='Channel']/following-sibling::div")).click();
+
+		driver.findElement(By.xpath("//div[text()='"+ticket_Channel+"']")).click();
+
+		// Save Ticket
+
+		driver.findElement(By.xpath("//div[text()='save']")).click();
+
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[text()='Ticket Information']")));
+
+		driver.findElement(By.xpath("//div[text()='confirmation_number']")).click();
+
+
 
 		return this;
 	}
+
+
+
 	/**
 	 * Assertion
 	 * @return boolean value of true or false 
@@ -459,12 +1010,12 @@ public class Dashboard_Page extends DooctiAgentBase{
 	}
 
 
-	public Dashboard_Page create_Assert(String expectedValue) {
+	public Dashboard_Page create_Assert(String expectedValue,String assertCol) {
 
 
 		wait = new WebDriverWait(driver,Duration.ofSeconds(30));
 
-		List<WebElement> Alldatas = driver.findElements(By.xpath("//table[contains(@class,'lead table')]//tr//td[3]"));
+		List<WebElement> Alldatas = driver.findElements(By.xpath("//table[contains(@class,'lead table')]//tr//td["+assertCol+"]"));
 
 		boolean flag = false;
 
@@ -486,6 +1037,24 @@ public class Dashboard_Page extends DooctiAgentBase{
 
 	}
 
+
+
+
+
+
+
+
+	public Dashboard_Page consoleLog() throws AWTException {
+
+		rb = new Robot();
+
+		rb.keyPress(KeyEvent.VK_CONTROL);
+		rb.keyPress(KeyEvent.VK_SHIFT);
+		rb.keyPress(KeyEvent.VK_J);
+
+		return this;
+
+	}
 
 
 	public Dashboard_Page codeWait(int Seconds) {

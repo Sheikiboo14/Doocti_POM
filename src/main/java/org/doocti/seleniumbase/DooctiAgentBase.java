@@ -22,7 +22,7 @@ public class DooctiAgentBase {
 
 	String URL = "https://web-v2.doocti.com/v2.1.106/";
 
-	String userEmail ="developv2_agent02@doocti.com";
+	String userEmail ="developv2_agent04@doocti.com";
 
 	String userPassword ="Doocti@123";
 
@@ -35,8 +35,9 @@ public class DooctiAgentBase {
 
 		ChromeOptions option = new ChromeOptions();
 
-		option.addArguments("--incognito");
+		option.addArguments("use-fake-ui-for-media-stream","--incognito");
 
+		
 		WebDriverManager.chromedriver().setup();
 
 		driver = new ChromeDriver(option);
@@ -130,11 +131,13 @@ public class DooctiAgentBase {
 	@DataProvider(name="ContactData")
 	public String[][] contactdata() {
 
-		String [][]contactdata = new String[1][3];
+		String [][]contactdata = new String[1][4];
 
-		contactdata[0][0] = "Test";
-		contactdata[0][1] = "9876543210";
+		contactdata[0][0] = "Test Contact";
+		contactdata[0][1] = "9514380497";
 		contactdata[0][2] = " Contact Details";
+		contactdata[0][3] = "NOT INTERESTED";
+
 
 		return contactdata;
 
@@ -144,17 +147,19 @@ public class DooctiAgentBase {
 	@DataProvider(name="MeetingData")
 	public String[][] meetingdata() {
 
-		String [][]meetingdata = new String[1][8];
+		String [][]meetingdata = new String[1][10];
 
 		meetingdata[0][0] = "Decision-making meeting";
 		meetingdata[0][1] = "9514380497";
 		meetingdata[0][2] = "lead";
-		meetingdata[0][3] = "20";
+		meetingdata[0][3] = "23";
 		meetingdata[0][4] = "00";
 		meetingdata[0][5] = "Testing";
-		meetingdata[0][6] = "13";
+		meetingdata[0][6] = "15";
 		
 		meetingdata[0][7] ="Create Meeting";
+		meetingdata[0][8] ="Upcoming";
+		meetingdata[0][9] ="NOT INTERESTED";
 
 
 		return meetingdata;
@@ -162,7 +167,41 @@ public class DooctiAgentBase {
 
 	}	
 
+	@DataProvider(name="TicketData")
+	public String[][] tiketdata() {
 
+		String [][]tiketdata = new String[1][10];
+
+		tiketdata[0][0] = "Open";
+		tiketdata[0][1] = "Bug6";
+		tiketdata[0][2] = "Testing";
+		tiketdata[0][3] = "Testing";
+		tiketdata[0][4] = "9514380497";
+		tiketdata[0][5] = "Medium";
+		tiketdata[0][6] = "Test";
+		tiketdata[0][7] = "15";
+		
+		tiketdata[0][8] ="Create New Ticket";
+		tiketdata[0][9] ="NOT INTERESTED";
+
+
+
+		return tiketdata;
+
+
+	}	
+	
+	@DataProvider(name="CallData")
+	public String[][] calldata() {
+		
+		String [][]calldata = new String[1][3];
+		
+		calldata[0][0] = "9514380497";
+		calldata[0][1] = "NOT INTERESTED";
+		calldata[0][2] = "testing";
+		
+		return calldata;
+	}
 
 
 }
