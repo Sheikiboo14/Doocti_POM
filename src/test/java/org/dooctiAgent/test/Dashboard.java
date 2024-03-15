@@ -1,5 +1,6 @@
 package org.dooctiAgent.test;
 
+import org.testng.annotations.Test;
 import java.awt.AWTException;
 
 import org.doocti.seleniumbase.DooctiAgentBase;
@@ -43,7 +44,9 @@ public class Dashboard extends DooctiAgentBase  {
 		.noti_Assert(false)
 		.click_Profile(true)
 		.click_Close()
-		.profile_Assert(false);
+		.profile_Assert(false)
+		.click_Lead(true)
+		.click_Logo();
 		
 	}
 	
@@ -60,7 +63,10 @@ public class Dashboard extends DooctiAgentBase  {
 		.click_Savebtn()
 		.click_DashBoard()
 		.click_Lead(true)
-		.create_Assert(leaddata[0],"3");
+		.create_Assert(leaddata[0],"3")
+		.click_CallIcon(leaddata[0])
+		.callDisconnect()
+		.callDispo("Leads",leaddata[11],null);
 		
 	}
 	
@@ -70,6 +76,7 @@ public class Dashboard extends DooctiAgentBase  {
 		
 		new Dashboard_Page(driver)
 		.click_Contact(true)
+		.page_Refresh()
 		.click_PlusIcon()
 		.isDisplayed(true,contactdata[2])
 		.contactDetails(contactdata[0], contactdata[1] )
@@ -83,6 +90,7 @@ public class Dashboard extends DooctiAgentBase  {
 		.callDisconnect()
 		.callDispo("Contacts",contactdata[3],null);
 		
+		
 	}
 	
 	@Test(dataProvider="MeetingData",dataProviderClass=DooctiAgentBase.class)
@@ -90,6 +98,7 @@ public class Dashboard extends DooctiAgentBase  {
 		
 		new Dashboard_Page(driver)
 		.click_Meeting(true)
+		.page_Refresh()
 		.click_PlusIcon()
 		.isDisplayed(true,meetingdata[7])
 		.meetingDetails(meetingdata[0], meetingdata[1], meetingdata[2], meetingdata[3], meetingdata[4], meetingdata[5], meetingdata[6])
@@ -97,7 +106,6 @@ public class Dashboard extends DooctiAgentBase  {
 		.click_CallIcon(meetingdata[1])
 		.callDisconnect()
 		.callDispo("Meetings",meetingdata[9],null);
-		
 	}
 	
 	
@@ -106,6 +114,7 @@ public class Dashboard extends DooctiAgentBase  {
 		
 		new Dashboard_Page(driver)
 		.click_Ticket(true)
+		.page_Refresh()
 		.click_PlusIcon()
 		.isDisplayed(true,tiketdata[8])
 		.ticketDetails(tiketdata[0], tiketdata[1], tiketdata[2], tiketdata[3], tiketdata[4], tiketdata[5], tiketdata[6], tiketdata[7])
@@ -117,6 +126,7 @@ public class Dashboard extends DooctiAgentBase  {
 		.click_CallIcon(tiketdata[1])
 		.callDisconnect()
 		.callDispo("Tickets",tiketdata[9],null);
+		
 	}
 	
 	@Test(dataProvider = "CallData",dataProviderClass= DooctiAgentBase.class)

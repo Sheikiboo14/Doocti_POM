@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
+<suite name="Suite">
+  <test thread-count="5" name="Agent Smoke Test">
+    <classes>
+      <class name="org.dooctiAgent.test.Dashboard">
+		  <methods>
+		  	<include name="Navbar_Test"/>
+		  	<include name="lead_Create"/>
+			<include name="ticket_Create"/>
+		  	<include name="meeting_Create"/>
+		  	<include name="dialCall"/>
+	<!--   	<include name="contact_Create"/> -->
+
+	  		</methods>
+	  	</class>
+    </classes>
+  </test> <!-- Agent Smoke Test -->
+</suite> <!-- Suite -->

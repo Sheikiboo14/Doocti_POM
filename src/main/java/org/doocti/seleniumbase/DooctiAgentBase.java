@@ -81,11 +81,11 @@ public class DooctiAgentBase {
 	@DataProvider(name="LeadData")
 	public String[][] leaddata() {
 
-		String[][] leaddata= new String[3][11];
+		String[][] leaddata= new String[1][12];
 
-		leaddata[0][0] = "Test Lead1";
+		leaddata[0][0] = "Test Lead4";
 		leaddata[0][1] = "Testing";
-		leaddata[0][2] = "9514380498";
+		leaddata[0][2] = "9514380497";
 		leaddata[0][3] = "test@gmail.com";
 		leaddata[0][4] = "Tevatel Company";
 		leaddata[0][5] = "124";
@@ -94,24 +94,28 @@ public class DooctiAgentBase {
 		leaddata[0][8] = "Callssss";
 		leaddata[0][9] = "testing";
 		leaddata[0][10] = " Lead Information";
+		leaddata[0][11] = "NOT INTERESTED";
 
 
-		leaddata[1][0] = "Test Lead2";
+/*
+		leaddata[1][0] = "Test Lead5";
 		leaddata[1][1] = "Testing";
-		leaddata[1][2] = "9514380499";
+		leaddata[1][2] = "9514380497";
 		leaddata[1][3] = "test@gmail.com";
 		leaddata[1][4] = "Tevatel Company";
 		leaddata[1][5] = "124";
 		leaddata[1][6] = "Test Tag";
-		leaddata[1][7] = "9087654321";
+		leaddata[1][7] = "9514380497";
 		leaddata[1][8] = "Callssss";
 		leaddata[1][9] = "testing";
 		leaddata[1][10] = " Lead Information";
+		leaddata[1][11] = "NOT INTERESTED";
 
 
-		leaddata[2][0] = "Test Lead3";
+
+		leaddata[2][0] = "Test Lead6";
 		leaddata[2][1] = "Testing";
-		leaddata[2][2] = "9514380490";
+		leaddata[2][2] = "9514380497";
 		leaddata[2][3] = "test@gmail.com";
 		leaddata[2][4] = "Tevatel Company";
 		leaddata[2][5] = "124";
@@ -121,7 +125,9 @@ public class DooctiAgentBase {
 		leaddata[2][9] = "testing";
 		
 		leaddata[2][10] = " Lead Information";
+		leaddata[2][11] = "NOT INTERESTED";
 
+*/
 
 
 

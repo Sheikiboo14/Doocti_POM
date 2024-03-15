@@ -8,6 +8,7 @@ import java.util.List;
 
 import org.doocti.seleniumbase.DooctiAgentBase;
 import org.openqa.selenium.By;
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.interactions.WheelInput;
@@ -21,7 +22,9 @@ public class Dashboard_Page extends DooctiAgentBase{
 	RemoteWebDriver driver =null;
 
 	WebDriverWait wait = null;
-
+	
+	Actions action = null;
+	
 	Robot rb = null;
 
 	public Dashboard_Page(RemoteWebDriver driver) {
@@ -50,28 +53,10 @@ public class Dashboard_Page extends DooctiAgentBase{
 	/**
 	 * Actions
 	 * @return 
+	 * @return 
 	 */
 
-	public Dashboard_Page click_DashBoard() {
 
-		driver.findElement(By.xpath("//div[text()='dashboard']")).click();
-
-		return this;
-	}
-
-	public Dashboard_Page click_CallIcon(String calldata) {
-
-		driver.findElement(By.xpath("//p[text()='"+calldata+"']//following::span[text()='phone']")).click();
-
-		return this;
-	}
-
-	public Dashboard_Page click_DialPad() {
-
-		driver.findElement(By.xpath("//span[text()='Dial Pad']")).click();
-
-		return this;
-	}
 
 	public Dashboard_Page meeting_Filter(String meetingStatus) {
 
@@ -454,13 +439,6 @@ public class Dashboard_Page extends DooctiAgentBase{
 
 	}
 
-	public Dashboard_Page click_Close() {
-
-		driver.findElement(By.xpath("//span[text()='close']")).click();
-
-		return this;
-	}
-
 	public Dashboard_Page click_Logout(boolean expectedValue) {
 
 		wait = new WebDriverWait(driver,Duration.ofSeconds(20));
@@ -479,181 +457,7 @@ public class Dashboard_Page extends DooctiAgentBase{
 		return this;
 	}
 
-	public Dashboard_Page dialCall(String dialNumber) {
 
-		wait = new WebDriverWait(driver,Duration.ofSeconds(20));
-
-		boolean callBtn = driver.findElement(By.xpath("//button[contains(@class,'callnow ')]")).isEnabled();
-
-		Assert.assertFalse(callBtn);
-
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("(//span[text()='Dial Pad']/following::input)[1]")));
-
-		driver.findElement(By.xpath("(//span[text()='Dial Pad']/following::input)[1]")).sendKeys(dialNumber);
-
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//button[contains(@class,'callnow ')]")));
-
-		driver.findElement(By.xpath("//button[contains(@class,'callnow ')]")).click();	
-
-
-
-
-		return this;
-	}
-
-	public Dashboard_Page callDisconnect() {
-
-		wait = new WebDriverWait(driver,Duration.ofSeconds(20));
-
-		try {
-			Thread.sleep(15000);
-		}
-		catch(Exception e) {
-			System.err.println(e.getMessage());
-		}
-
-		if(driver.findElement(By.xpath("//a[contains(text(),'mic_off')]")).isDisplayed()==false) {
-
-			driver.findElement(By.xpath("//span[text()='call_end']")).click();
-
-
-		}
-
-		else {
-
-			wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//a[contains(text(),'mic_off')]")));
-
-			try {
-				Thread.sleep(5000);
-			}
-			catch(Exception e) {
-
-				System.err.println(e.getMessage());
-			}
-
-			driver.findElement(By.xpath("//span[text()='call_end']")).click();
-
-		}
-
-		return this;
-	}
-	public Dashboard_Page callDispo(String pageName,String dispo ,String sourceName) {
-
-		wait = new WebDriverWait(driver,Duration.ofSeconds(20));
-
-		switch (pageName) {
-
-		case "Leads":
-
-			String sourceData = driver.findElement(By.xpath("//div[text()='source']")).getText();
-
-			boolean isEmpty = sourceData.isEmpty();
-
-			if(isEmpty==true) {
-
-
-				wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[text()='source']/following-sibling::div")));
-
-				driver.findElement(By.xpath("//div[text()='source']/following-sibling::div")).click();
-
-				wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[text()='"+sourceName+"']")));
-
-				driver.findElement(By.xpath("//div[text()='"+sourceName+"']")).click();
-
-				driver.findElement(By.xpath("//div[text()='save']")).click();
-			}
-
-			wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[text()='"+dispo+"']//following-sibling::div[text()='check']")));
-
-			driver.findElement(By.xpath("//div[text()='"+dispo+"']//following-sibling::div[text()='check']")).click();
-
-			break;
-
-		case "Contacts":
-
-			wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[text()='"+dispo+"']//following-sibling::div[text()='check']")));
-
-			driver.findElement(By.xpath("//div[text()='"+dispo+"']//following-sibling::div[text()='check']")).click();
-			
-			wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//button[text()='Ok!']")));
-
-			driver.findElement(By.xpath("//button[text()='Ok!']")).click();
-
-			break;
-
-		case "Meetings":
-
-			wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[text()='"+dispo+"']//following-sibling::div[text()='check']")));
-
-			driver.findElement(By.xpath("//div[text()='"+dispo+"']//following-sibling::div[text()='check']")).click();
-
-			break;
-
-		case "Tickets":
-
-			wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[text()='"+dispo+"']//following-sibling::div[text()='check']")));
-
-			driver.findElement(By.xpath("//div[text()='"+dispo+"']//following-sibling::div[text()='check']")).click();
-
-			wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//button[text()='Ok!']")));
-
-			driver.findElement(By.xpath("//button[text()='Ok!']")).click();
-
-			break;
-
-		default :
-
-			System.err.println("Wronge Page Name");
-
-			break;
-
-		}
-
-
-		return this;
-	}
-	public Dashboard_Page click_PlusIcon() {
-
-		driver.findElement(By.xpath("//div[text()='add_circle']")).click();
-
-		return this;
-	}
-
-	public Dashboard_Page click_Savebtn() {
-
-		driver.findElement(By.xpath("//div[text()='save']")).click();
-
-		return this;
-	}
-
-	public Dashboard_Page click_Okbtn() {
-
-		driver.findElement(By.xpath("//button[text()='Ok!']")).click();
-
-		return this;
-	}
-
-	public Dashboard_Page click_Createbtn() {
-
-		driver.findElement(By.xpath("//button[text()='Create']")).click();
-
-		return this;
-	}
-
-
-	public Dashboard_Page click_RefreshIcon() {
-
-		driver.findElement(By.xpath("//div[text()='refresh']")).click();
-
-		return this;
-	}
-
-	public Dashboard_Page click_FilterIcon() {
-
-		driver.findElement(By.xpath("//span[text()='tune']")).click();
-
-		return this;
-	}
 
 
 
@@ -818,6 +622,8 @@ public class Dashboard_Page extends DooctiAgentBase{
 
 	public Dashboard_Page meetingDetails(String meeting_Title,String meeting_Number,String meeting_Module,String meeting_Hours,String meeting_Min,String meeting_des,String meeting_Date) {
 
+		action =new Actions(driver);
+		
 		List<WebElement> Alldatas = driver.findElements(By.xpath("//table[contains(@class,'lead table')]//tr"));
 
 		int ini_Count = Alldatas.size();
@@ -831,9 +637,15 @@ public class Dashboard_Page extends DooctiAgentBase{
 		driver.findElement(By.xpath("//div[text()='"+meeting_Title+"']")).click();
 
 		//Phone Number
-
-		driver.findElement(By.xpath("//input[@placeholder='Phone Number']")).sendKeys(meeting_Number);
-
+		
+		WebElement meetingNum = driver.findElement(By.xpath("//input[@placeholder='Phone Number']"));
+		
+		meetingNum.sendKeys(meeting_Number);
+		
+		action.doubleClick(meetingNum)
+		.sendKeys(Keys.BACK_SPACE)
+		.sendKeys(meeting_Number)
+		.build().perform();
 
 		// Module
 
@@ -869,7 +681,7 @@ public class Dashboard_Page extends DooctiAgentBase{
 
 		try {
 
-			Thread.sleep(1000);
+			Thread.sleep(3000);
 		}
 
 		catch(Exception e) {
@@ -956,19 +768,33 @@ public class Dashboard_Page extends DooctiAgentBase{
 
 		driver.findElement(By.xpath("//div[text()='"+ticket_Channel+"']")).click();
 
-		// Save Ticket
-
-		driver.findElement(By.xpath("//div[text()='save']")).click();
-
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[text()='Ticket Information']")));
-
-		driver.findElement(By.xpath("//div[text()='confirmation_number']")).click();
 
 
 
 		return this;
 	}
 
+	public Dashboard_Page dialCall(String dialNumber) {
+
+		wait = new WebDriverWait(driver,Duration.ofSeconds(20));
+
+		boolean callBtn = driver.findElement(By.xpath("//button[contains(@class,'callnow ')]")).isEnabled();
+
+		Assert.assertFalse(callBtn);
+
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("(//span[text()='Dial Pad']/following::input)[1]")));
+
+		driver.findElement(By.xpath("(//span[text()='Dial Pad']/following::input)[1]")).sendKeys(dialNumber);
+
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//button[contains(@class,'callnow ')]")));
+
+		driver.findElement(By.xpath("//button[contains(@class,'callnow ')]")).click();	
+
+
+
+
+		return this;
+	}
 
 
 	/**
@@ -1038,7 +864,343 @@ public class Dashboard_Page extends DooctiAgentBase{
 	}
 
 
+	public Dashboard_Page isDisplaydialpadIcon() {
+		
+		boolean dialPad = driver.findElement(By.xpath("//a[contains(text(),'dialpad')]")).isDisplayed();
+			
+		Assert.assertTrue(dialPad,"DialPad Icon is Not Displayed...!");
+		
+		driver.findElement(By.xpath("//a[contains(text(),'dialpad')]")).click();
+		
+		WebElement callScreen = driver.findElement(By.xpath("(//div[@class='callscreen-flx-top']//div)[1]"));
+		
+		WheelInput.ScrollOrigin scrollOrigin = WheelInput.ScrollOrigin.fromElement(callScreen);
 
+		new Actions(driver)
+		.scrollFromOrigin(scrollOrigin, 0, 600)
+		.perform();
+		
+		boolean subdialPad = driver.findElement(By.xpath("(//div[@class='dialpad_sub_container']//div)[2]")).isDisplayed();
+		
+		Assert.assertTrue(subdialPad, "Sub Dial Pad is Not Displayed...!");
+		
+		driver.findElement(By.xpath("//a[contains(text(),'dialpad')]")).click();
+
+		
+		return this;
+	}
+	
+	public Dashboard_Page isDisplaymuteIcon() {
+		
+		boolean muteIcon = driver.findElement(By.xpath("//a[contains(text(),'mic_off')]")).isDisplayed();
+			
+		Assert.assertTrue(muteIcon,"Mute Icon is Not Displayed...!");
+		
+//		driver.findElement(By.xpath("//a[contains(text(),'mic_off')]")).click();
+//		
+//		try {
+//			
+//			Thread.sleep(1000);
+//		}
+//		
+//		catch(Exception e) {
+//			
+//			System.err.println(e.getMessage());
+//		}
+//		boolean muteSelect = driver.findElement(By.xpath("//a[contains(text(),'mic_off')]")).isEnabled();
+		
+//		System.out.println(muteSelect);
+//		
+//		Assert.assertTrue(muteSelect,"Mute Icon is Not Selected..!");
+//		
+//		driver.findElement(By.xpath("//a[contains(text(),'mic_off')]")).click();
+
+		
+		return this;
+
+	}
+	
+	public Dashboard_Page isDisplayholdIcon() {
+		
+		boolean holdIcon = driver.findElement(By.xpath("//a[contains(text(),'pause')]")).isDisplayed();
+			
+		Assert.assertTrue(holdIcon,"Hold Icon is Not Displayed...!");
+		
+//		driver.findElement(By.xpath("//a[contains(text(),'pause')]")).click();
+//		
+//		boolean holdSelect = driver.findElement(By.xpath("//a[contains(text(),'pause')]")).isSelected();
+//		
+//		Assert.assertTrue(holdSelect,"Hold Icon is Not Selected..!");
+//		
+//		driver.findElement(By.xpath("//a[contains(text(),'pause')]")).click();
+
+		
+		return this;
+
+	}
+	
+	public Dashboard_Page isDisplaytransferIcon() {
+		
+		boolean transferIcon = driver.findElement(By.xpath("//a[contains(text(),'phone_forwarded')]")).isDisplayed();
+			
+		Assert.assertTrue(transferIcon,"Call Transfer Icon is Not Displayed...!");
+		
+//		driver.findElement(By.xpath("//a[contains(text(),'phone_forwarded')]")).click();
+//		
+//		boolean transferSelect = driver.findElement(By.xpath("//a[contains(text(),'phone_forwarded')]")).isSelected();
+//		
+//		Assert.assertTrue(transferSelect,"Call Transfer Icon is Not Selected..!");
+//		
+//		driver.findElement(By.xpath("//a[contains(text(),'phone_forwarded')]")).click();
+
+		
+		return this;
+
+	}
+	
+	public Dashboard_Page isDisplayconfrenceIcon() {
+		
+		boolean confrenceIcon = driver.findElement(By.xpath("//a[contains(text(),'people')]")).isDisplayed();
+			
+		Assert.assertTrue(confrenceIcon,"Confrence Icon is Not Displayed...!");
+		
+//		driver.findElement(By.xpath("//a[contains(text(),'people')]")).click();
+//		
+//		boolean confrenceSelect = driver.findElement(By.xpath("//a[contains(text(),'people')]")).isSelected();
+//		
+//		Assert.assertTrue(confrenceSelect,"Confrence Icon is Not Selected..!");
+//		
+//		driver.findElement(By.xpath("//a[contains(text(),'people')]")).click();
+		
+		return this;
+
+	}
+
+	public Dashboard_Page isDisplaydescriptionIcon() {
+		
+		boolean descriptionIcon = driver.findElement(By.xpath("//a[contains(text(),'description')]")).isDisplayed();
+			
+		Assert.assertTrue(descriptionIcon,"Description Icon is Not Displayed...!");
+		
+		return this;
+
+	}
+	
+	public Dashboard_Page page_Refresh() {
+		
+		wait = new WebDriverWait(driver,Duration.ofSeconds(20));
+		
+		driver.navigate().refresh();
+		
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//button[text()='Get Start']")));
+		
+		driver.findElement(By.xpath("//button[text()='Get Start']")).click();
+		
+		return this;
+	}
+	
+	public Dashboard_Page click_DashBoard() {
+
+		driver.findElement(By.xpath("//div[text()='dashboard']")).click();
+
+		return this;
+	}
+	
+	public Dashboard_Page click_Logo() {
+
+		driver.findElement(By.xpath("//img[@class='navbar-logo-img left_logoimge']")).click();
+
+		return this;
+	}
+		
+	
+
+	public Dashboard_Page click_CallIcon(String calldata) {
+
+		driver.findElement(By.xpath("//p[text()='"+calldata+"']//following::span[text()='phone']")).click();
+
+		return this;
+	}
+
+	public Dashboard_Page click_DialPad() {
+
+		driver.findElement(By.xpath("//span[text()='Dial Pad']")).click();
+
+		return this;
+	}
+	
+
+	public Dashboard_Page callDisconnect() {
+
+		wait = new WebDriverWait(driver,Duration.ofSeconds(20));
+
+
+
+		if(driver.findElement(By.xpath("//a[contains(text(),'mic_off')]")).isDisplayed()==false) {
+
+			driver.findElement(By.xpath("//span[text()='call_end']")).click();
+
+
+		}
+
+		else {
+			
+			WebElement callScreen = driver.findElement(By.xpath("(//div[@class='callscreen-flx-top']//div)[1]"));
+
+			WheelInput.ScrollOrigin scrollOrigin = WheelInput.ScrollOrigin.fromElement(callScreen);
+
+			new Actions(driver)
+			.scrollFromOrigin(scrollOrigin, 0, 200)
+			.perform();
+
+			wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//a[contains(text(),'mic_off')]")));
+			
+			new Dashboard_Page(driver)
+			.isDisplaydialpadIcon()
+			.isDisplaymuteIcon()
+			.isDisplaytransferIcon()
+			.isDisplayconfrenceIcon()
+			.isDisplaydescriptionIcon();
+			
+
+			try {
+				Thread.sleep(5000);
+			}
+			catch(Exception e) {
+
+				System.err.println(e.getMessage());
+			}
+
+			driver.findElement(By.xpath("//span[text()='call_end']")).click();
+
+		}
+
+		return this;
+	}
+	
+
+	public Dashboard_Page callDispo(String pageName,String dispo ,String sourceName) {
+
+		wait = new WebDriverWait(driver,Duration.ofSeconds(20));
+
+		switch (pageName) {
+
+		case "Leads":
+
+			wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[text()='"+dispo+"']//following-sibling::div[text()='check']")));
+
+			driver.findElement(By.xpath("//div[text()='"+dispo+"']//following-sibling::div[text()='check']")).click();
+
+			break;
+
+		case "Contacts":
+
+			wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[text()='"+dispo+"']//following-sibling::div[text()='check']")));
+
+			driver.findElement(By.xpath("//div[text()='"+dispo+"']//following-sibling::div[text()='check']")).click();
+			
+			wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//button[text()='Ok!']")));
+
+			driver.findElement(By.xpath("//button[text()='Ok!']")).click();
+
+			break;
+
+		case "Meetings":
+
+			wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[text()='"+dispo+"']//following-sibling::div[text()='check']")));
+
+			driver.findElement(By.xpath("//div[text()='"+dispo+"']//following-sibling::div[text()='check']")).click();
+
+			break;
+
+		case "Tickets":
+
+			wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[text()='"+dispo+"']//following-sibling::div[text()='check']")));
+
+			driver.findElement(By.xpath("//div[text()='"+dispo+"']//following-sibling::div[text()='check']")).click();
+
+			wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//button[text()='Ok!']")));
+
+			driver.findElement(By.xpath("//button[text()='Ok!']")).click();
+
+			break;
+
+		default :
+
+			System.err.println("Wronge Page Name");
+
+			break;
+
+		}
+
+
+		return this;
+	}
+	
+
+	public Dashboard_Page click_Close() {
+
+		driver.findElement(By.xpath("//span[text()='close']")).click();
+
+		return this;
+	}
+	
+	
+	public Dashboard_Page click_PlusIcon() {
+
+		driver.findElement(By.xpath("//div[text()='add_circle']")).click();
+
+		return this;
+	}
+
+	public Dashboard_Page click_Savebtn() {
+
+		wait = new WebDriverWait(driver,Duration.ofSeconds(20));
+		
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[text()='save']")));
+		
+		driver.findElement(By.xpath("//div[text()='save']")).click();
+
+		return this;
+	}
+
+	public Dashboard_Page click_Okbtn() {
+
+		driver.findElement(By.xpath("//button[text()='Ok!']")).click();
+
+		return this;
+	}
+
+	public Dashboard_Page click_Createbtn() {
+
+		driver.findElement(By.xpath("//button[text()='Create']")).click();
+
+		return this;
+	}
+
+	
+
+	public Dashboard_Page click_RefreshIcon() {
+		
+		wait = new WebDriverWait(driver,Duration.ofSeconds(20));
+		
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[text()='refresh']")));
+
+		driver.findElement(By.xpath("//div[text()='refresh']")).click();
+
+		return this;
+	}
+
+	public Dashboard_Page click_FilterIcon() {
+
+		wait = new WebDriverWait(driver,Duration.ofSeconds(20));
+		
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//span[text()='tune']")));
+		
+		driver.findElement(By.xpath("//span[text()='tune']")).click();
+
+		return this;
+	}
 
 
 
